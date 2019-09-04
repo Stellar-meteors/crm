@@ -1,0 +1,49 @@
+package com.zch.crm.entity;
+
+/**
+ * @Description: TODO
+ * @Author: 张楚涵
+ * @Date: 2019/9/4 0004 9:21
+ * @version:1.0.0
+ */
+public class DocTest {
+    private Long id;
+
+    private String docname;
+
+    private String docmsg;
+
+    private String useraction;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDocname() {
+        return docname;
+    }
+
+    public void setDocname(String docname) {
+        this.docname = docname == null ? null : docname.trim();
+    }
+
+    public String getDocmsg() {
+        return docmsg;
+    }
+
+    public void setDocmsg(String docmsg) {
+        this.docmsg = docmsg == null ? null : docmsg.trim();
+    }
+
+    public String getUseraction() {
+        return useraction;
+    }
+
+    public void setUseraction(String useraction) {
+        this.useraction = useraction == null ? null : useraction.trim();
+    }
+}
