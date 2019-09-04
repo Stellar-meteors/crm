@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * @Description: TODO
+ * @Description: 员工实体类
  * @Author: 张楚涵
  * @Date: 2019/9/4 0004 9:22
  * @version:1.0.0
@@ -14,23 +14,23 @@ import java.util.Date;
 public class Employee {
     private Long id;
 
-    private String name;
+    private String name;  //名字
 
-    private String sex;
+    private String sex;  //性别
 
-    private String phone;
+    private String phone;  //电话
 
-    private String email;
+    private String email;  //邮箱
 
-    private Position positionId;
+    private Position positionId;  //上级id
 
-    private String eduschool;
+    private String eduschool;  //毕业学校
 
-    private String idcard;
+    private String idcard;  //身份证号
 
-    private Department deptId;
+    private Department deptId;  //部门id
 
-    private String address;
+    private String address;  //地址
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

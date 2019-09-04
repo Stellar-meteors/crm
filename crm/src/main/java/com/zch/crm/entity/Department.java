@@ -1,17 +1,17 @@
 package com.zch.crm.entity;
 
 /**
- * @Description: TODO
+ * @Description: 部门实体类
  * @Author: 张楚涵
  * @Date: 2019/9/4 0004 9:21
  * @version:1.0.0
  */
 public class Department {
-    private Long id;
+    private Long id;   //部门id
 
-    private String deptname;
+    private String deptname;  //部门名字
 
-    private String deptmsg;
+    private String deptmsg;  //部门信息
 
     public Long getId() {
         return id;
