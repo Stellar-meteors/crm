@@ -4,6 +4,7 @@ package com.zch.crm.web.controller;
 import com.zch.crm.context.UserContext;
 import com.zch.crm.entity.User;
 import com.zch.crm.mapper.UserMapper;
+import com.zch.crm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,9 @@ public class LoginController {
     //依赖Mapper
     @Autowired
     private UserMapper mapper;
+
+    @Autowired
+    private IUserService userService;
 
     //处理验证码
     @RequestMapping("/imageCode")
@@ -62,7 +66,8 @@ public class LoginController {
     @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView login(@RequestParam("loginname") String loginname, @RequestParam("password") String password,
                               @RequestParam("imgCode") String imgCode, HttpSession session, ModelAndView mv) {
-        User user = mapper.selectByLogin(loginname, password);
+        //User user = mapper.selectByLogin(loginname, password);
+        User user = userService.selectByLogin(loginname, password);
         //取出session中的验证码
         String imgCode1 = (String) session.getAttribute("imgCode");
         System.out.println("user = " + user);

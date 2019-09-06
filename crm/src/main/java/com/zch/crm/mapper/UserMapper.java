@@ -26,4 +26,7 @@ public interface UserMapper {
 
 
     List<User> selectPageResult(@Param("page") int page, @Param("pageLimit") int pageLimit);
+
+    //通过用户登录名得到盐值
+    User selectSaltByName(String loginname);
 }

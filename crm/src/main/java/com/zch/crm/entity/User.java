@@ -25,6 +25,15 @@ public class User {
     private Date createtime;
 
     private Integer state;
+    private String salt;   //盐值
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     public Long getId() {
         return id;
@@ -83,6 +92,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", createtime=" + createtime +
                 ", state=" + state +
+                ", salt='" + salt + '\'' +
                 '}';
     }
 }

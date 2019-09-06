@@ -8,7 +8,12 @@
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="createTime" property="createtime" jdbcType="TIMESTAMP"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"></result>
     </resultMap>
+
+    <select id="selectSaltByName" resultType="com.zch.crm.entity.User">
+        select salt from user where loginName=#{loginName}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
         from user
@@ -16,9 +21,9 @@
     </delete>
     <insert id="insert" parameterType="com.zch.crm.entity.User" useGeneratedKeys="true" keyProperty="id">
         insert into user (loginName, password, username,
-                          createTime, state)
+                          createTime, state,salt)
         values (#{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-                #{createtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+                #{createtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER},#{salt,jdbcType=VARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="com.zch.crm.entity.User">
         update user
@@ -26,7 +31,8 @@
             password   = #{password,jdbcType=VARCHAR},
             username   = #{username,jdbcType=VARCHAR},
             createTime = #{createtime,jdbcType=TIMESTAMP},
-            state      = #{state,jdbcType=INTEGER}
+            state      = #{state,jdbcType=INTEGER},
+            salt       = #{salt,jdbcType=VARCHAR}
         where loginName = #{loginname,jdbcType=VARCHAR}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -53,7 +59,7 @@
              #{pageLimit}
     </select>
     <select id="selectByLogin" resultType="com.zch.crm.entity.User">
-        select id, loginName, password, username, createTime, state
+        select id, loginName, password, username, createTime, state,salt
         from user
         where loginName = #{loginname}
           and password = #{password}

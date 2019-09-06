@@ -37,7 +37,6 @@ public class UserController {
     //跳转add页面
     @RequestMapping("/addView")
     public String userAddView() {
-
         return "user/userAdd";
     }
 
