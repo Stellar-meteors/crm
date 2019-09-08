@@ -64,4 +64,9 @@
         where loginName = #{loginname}
           and password = #{password}
     </select>
+
+
+    <select id="selectCountByLoginname" resultType="int">
+        select count(*) from user where loginName = #{loginname}
+    </select>
 </mapper>
