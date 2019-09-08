@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,4 +101,14 @@ public class UserController {
         return "error";
     }
 
+
+    @RequestMapping("/loginname")
+    @ResponseBody
+    public String loginUserName(@RequestParam(value = "loginname",required = false)String loginname){
+        int r=userService.selectCountByLoginname(loginname);
+        if(r>0){
+            return "error";
+        }
+        return "success";
+    }
 }

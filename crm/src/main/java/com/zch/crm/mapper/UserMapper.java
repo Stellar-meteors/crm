@@ -29,4 +29,6 @@ public interface UserMapper {
 
     //通过用户登录名得到盐值
     User selectSaltByName(String loginname);
+
+    int selectCountByLoginname(String loginname);
 }

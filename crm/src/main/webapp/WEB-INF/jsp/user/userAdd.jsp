@@ -25,7 +25,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">登入名</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="loginname" lay-verify="required" autocomplete="off"
+                                    <input type="text" id="loginname" name="loginname" lay-verify="required" autocomplete="off"
                                            placeholder="请输入登入名"
                                            class="layui-input">
                                 </div>
@@ -70,6 +70,24 @@
 </form>
 <script type="text/javascript" src="<%=contextPath%>/layui/layui.js"></script>
 <script>
+    $(document).on("blur", "#loginname", function () {
+        var loginname=$("#loginname").serialize();
+        $.ajax({
+            url:'<%=contextPath%>/admin/loginname?'+loginname,
+            type:'get',
+            contentType: 'application/json',
+            success:function (result) {
+                if(result=="error"){
+                    layer.msg('用户名重复！', {time: 1 * 1000}, function () {
+                       // location.reload();
+                    });
+                    $("#loginname").focus();
+                    $("#loginname").select();
+
+                }
+            }
+        });
+    });
     layui.use('form', function () {
         var form = layui.form;
         form.render();

@@ -19,4 +19,6 @@ public interface IUserService {
     int deleteByPrimaryKey(Long id);
     User selectByLogin(String loginname, String password);
     int updateByPrimaryKey(User record);
+
+    int selectCountByLoginname(String loginname);
 }

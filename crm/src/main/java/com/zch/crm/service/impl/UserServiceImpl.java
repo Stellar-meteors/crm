@@ -2,6 +2,7 @@ package com.zch.crm.service.impl;
 
 
 import com.zch.crm.entity.User;
+
 import com.zch.crm.mapper.UserMapper;
 import com.zch.crm.service.IUserService;
 import com.zch.crm.utils.MD5Utils;
@@ -62,5 +63,16 @@ public class UserServiceImpl implements IUserService {
         user.setSalt(salt);
         user.setPassword(pwd);
         return mapper.updateByPrimaryKey(user);
+    }
+
+    /**
+     * 添加用户时候用户名是否重复
+     * @param loginname
+     * @return
+     */
+    @Override
+    public int selectCountByLoginname(String loginname) {
+        int r=mapper.selectCountByLoginname(loginname);
+        return r;
     }
 }

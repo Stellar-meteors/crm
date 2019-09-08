@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @version:1.0.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class mapperTest {
 
     @Autowired
@@ -24,10 +24,12 @@ public class mapperTest {
     @Test
     public void test() {
         User user = userMapper.selectSaltByName("zch");
-        System.out.println("获得的盐值是******************" +user.getSalt());
+        System.out.println("获得的盐值是******************" + user.getSalt());
     }
-@Test
-    public void selectByLogin(){
 
+    @Test
+    public void loginName() {
+        int r = userMapper.selectCountByLoginname("zch");
+        System.out.println("*****************" + r);
     }
 }

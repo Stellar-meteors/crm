@@ -12,4 +12,9 @@ public class MD5Utils {
     public static String md5(String instr) {
         return DigestUtils.md5Hex(instr);
     }
+
+    public static void main(String[] args) {
+        String pwd=md5("10ca97908bca4efdaef93901d79862e5"+123456);
+        System.out.println("*******************"+pwd);
+    }
 }
