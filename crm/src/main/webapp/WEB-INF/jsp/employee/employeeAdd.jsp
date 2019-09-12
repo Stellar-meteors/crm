@@ -24,7 +24,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">姓名</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="name" lay-verify="required" autocomplete="off"
+                                    <input type="text" name="name" id="name" lay-verify="required" autocomplete="off"
                                            placeholder="请输入姓名"
                                            class="layui-input">
                                 </div>
@@ -47,7 +47,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">邮箱</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="email" lay-verify="email" autocomplete="off"
+                                    <input type="text" name="email" id="email" lay-verify="email" autocomplete="off"
                                            placeholder="请输入邮箱"
                                            class="layui-input">
                                 </div>
@@ -146,6 +146,8 @@
         //监听提交点击事件
         form.on('submit(formBtn)', function (data) {
             console.log(JSON.stringify(data.field));
+            var email=$("#email").val();
+            var name=$("#name").val();
             //像服务端发送请求
             $.ajax({
                 url: '<%=contextPath%>/employee/empSave',
@@ -157,6 +159,11 @@
                     if (result == "success") {
                         layer.msg('添加成功！', {time: 1 * 1000}, function () {
                             location.reload();
+                        });
+                        $.ajax({
+                            url:"<%=contextPath%>/mail/email",
+                            type:"POST",
+                            data:{"email":email,"name":name}
                         });
                     } else {
                         layer.msg('添加失败！', {icon: 5});

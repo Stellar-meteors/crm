@@ -19,7 +19,7 @@
     <!--2：配置DI注解解析器-->
     <context:annotation-config/>
     <!--加载外部properties文件-->
-    <context:property-placeholder location="classpath:db.properties" system-properties-mode="NEVER"/>
+    <context:property-placeholder location="classpath:db.properties,classpath:mail.properties" system-properties-mode="NEVER"/>
     <!--3：配置数据库druid连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!--配置数据库连接的要素-->
@@ -72,4 +72,17 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
     </aop:config>
 
+    <!--配置邮件接口-->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.smtp.host}"/>
+        <property name="username" value="${mail.smtp.username}"/>
+        <property name="password" value="${mail.smtp.password}"/>
+        <property name="defaultEncoding" value="${mail.smtp.defaultEncoding}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
